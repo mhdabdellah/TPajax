@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>la deusieume page pour ajax </title>
+</head>
+<body>
+<div id="show">
+    <input type="textbox" id="num1" />
+    <a href="javascript:void(0)" onclick="postData()"> POST DATA </a><br>
+	<hr><hr>
+	<a href="javascript:void(0)" onclick="click_here()"> CLICK HERE </a>
+</div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+		function click_here(){
+		    jQuery.ajax({
+			    url:'get.php',
+				type:'post',
+				success:function(result){
+				alert(result);
+				}
+			});
+		}
+    </script >
+	<script>
+		function postData(){
+		    var num1= jQuery('#num1').val();
+		    jQuery.ajax({
+			    url:'get.php',
+				type:'post',
+				data:'num1='+num1,
+				success:function(result){
+				alert(result);
+				}
+			});
+		}
+    </script>
+</body>
+</html> 

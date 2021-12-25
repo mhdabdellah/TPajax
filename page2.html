@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>page 2</title>
+</head>
+<body>
+    <button data-page="demo.html">Get Demo1</button>
+	<button data-page="demo2.html">Get Demo2</button>
+    <button data-page="demo3.html">Get Demo3</button>
+    
+    <div id="show"></div>
+	
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        /*$(function (){
+          //$('#show').load('ajax.txt');
+            $('#show').load('demo.html .content', function(one, two, three){//function(responseText, statusText, XMLHttpRequest)
+			    console.log(one);
+				console.log(two);
+				console.log(three);
+		    });  
+        });**/
+		$(function (){
+          //$('#show').load('ajax.txt');
+		  $("button").on("click", function(){
+            $('#show').load($(this).data("page")+ " .content", function(resText, stText, xhr){
+			    //console.log(resText);
+				//console.log(stText);
+				//console.log(xhr);
+				if(stText === 'success'){
+				    console.log('Data is Loaded');
+				}
+		    });  
+		  });
+        });
+    </script 
+</body>
+</html> 

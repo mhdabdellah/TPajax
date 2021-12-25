@@ -1,0 +1,128 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hello</title>
+</head>
+<body>
+<button onclick="getRespos();">AJAX APP1</button>
+<button onclick="hello()">AJAX APP2</button>
+<button onclick="authPhp()">authPHP</button>
+<div id="show"></div>
+
+<script>
+XMLHttpRequest.onreadystatechange = function(){
+//if(this.readyState === 4 && this.status = 200){
+console.log(this.responseText);
+//};
+XMLHttpRequest.open(
+	  "GET",
+	  "localhost/ajax.txt",
+	  true
+	);
+XMLHttpRequest.send();
+alert(this.responseText);
+
+}
+// this is a function to do the Request
+ function getRespos() {
+ // Assign the Request object to the variable
+   var myRequest = new XMLHttpRequest();
+   // onreadystatechange => is a function called when the readyState change 
+   myRequest.onreadystatechange = function(){
+    /*
+	readyState => is the status of the request
+	can be 0 or 1 or 2 or 3 or 4 
+	and the status are :
+	[0] Request Not Initialized
+	[1] Server Connection Established
+	[2] Request Received
+	[3] Processing Request
+	[4] Request is Finished and Response is Ready
+	
+	status => Response Status Code 
+	[200]  OK 
+	*/
+	// if Request is Finished and Response is Ready and Status Code is 200(OK) Output The or (get) Response Text	
+    if (this.readyState === 4 && this.status === 200){
+	   console.log(this.responseText); 
+	};
+	//XMLHttpRequest.open(Method, URL, Async, User, Password);
+	//Method => "POST" or "GET" .....
+	// URL => "url of the site or ipa of the data that we will do the Request"
+	// Async => true for Asynchrony or false for synchrony
+	// User, Password => for authentication and they are optional  
+	myRequest.open(
+	  "GET",
+	  "ajax.txt",
+	  true
+	);
+	//XMLHttpRequest.send(); it will send your Request to the server 
+	myRequest.send();
+   }
+ }
+ function hello() {
+   var myRequest = new XMLHttpRequest();
+   myRequest.open(
+	  "GET",
+	  "object.json",
+	  true
+	);
+	myRequest.send();
+  
+   myRequest.onreadystatechange = function(){
+    if (this.readyState === 4 && this.status === 200){
+	   //console.log(this.responseText); 
+	   //console.log(JSON.parse(this.responseText));
+	   
+	   // Convert responseText to JS object (json)
+	   var myObject = JSON.parse(this.responseText);
+	   var myText = "";
+	   for(var i = 0; i < myObject.length; i++){
+	   
+	        console.log(myObject[i].username);
+			console.log(myObject[i].age);
+			myText += "<span>le nom est :<h3>"+myObject[i].username+"</h3>l'age est<h3>"+myObject[i].age+"</h3></span><hr>" 
+			
+	   }
+	   var myElement = document.getElementById("show");
+	   myElement.innerHTML = myText;
+	};
+	
+   }
+   console.log(myRequest);
+ }
+ function authPhp() {
+   var myRequest = new XMLHttpRequest();
+   // API with GET Methode
+   //myRequest.open(
+	  //"GET",
+	  //"auth.php?name=mohamed&lastlogin=Today",
+	  //"auth.php?name=ahmed&lastlogin=yesterday",
+	  //true
+	//);
+	//myRequest.send();
+	// With POST Method
+	 myRequest.open(
+	  "POST",
+	  "auth.php",
+	  true
+	);
+	myRequest.setRequestHeader(
+	"Content-Type",
+	"application/x-www-form-urlencoded"
+	);
+	myRequest.send("name=mohamed&lastlogin=Today");
+  
+   myRequest.onreadystatechange = function(){
+    if (this.readyState === 4 && this.status === 200){
+	  console.log(this.responseText); 
+	   
+	};
+	
+   }
+   console.log(myRequest);
+ }
+</script>
+</body>
+</html>

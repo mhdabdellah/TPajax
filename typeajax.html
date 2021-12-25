@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>la deusieume page pour ajax </title>
+</head>
+<body>
+
+    <script src="js/jquery.min.js"></script>
+    
+	<script>
+	hit1();
+	hit2();
+		function hit1(){
+		    jQuery.ajax({
+			    url:'get1.php',
+				type:'post',
+				async:false,
+				success:function(result){
+				console.log(result);
+				alert(result);
+				}
+			});
+		}
+		function hit2(){
+		    jQuery.ajax({
+			    url:'get2.php',
+				type:'post',
+				success:function(result){
+				console.log(result);
+				alert(result);
+				}
+			});
+		}
+    </script>
+</body>
+</html> 

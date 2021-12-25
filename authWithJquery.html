@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>page 2</title>
+</head>
+<body>
+    <button>Get Information</button>
+	
+    
+    <div id="show"></div>
+	
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+		$(function (){
+          //$('#show').load('ajax.txt');
+		  $("button").on("click", function(){
+            $.post("auth.php", {"name":"mohamed","lastlogin":"yesterday"}, function(data, status, xhr){//or $.post("auth.php","name=mohamed&lastlogin=Today", function(data, status, xhr){
+			    //console.log(data);
+				//console.log(status);
+				//console.log(xhr);
+				if(status === 'success'){
+				    console.log(data);
+				    console.log('Data is Loaded');
+				}
+		    });  
+		  });
+        });
+    </script 
+</body>
+</html> 
